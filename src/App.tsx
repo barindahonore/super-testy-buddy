@@ -22,6 +22,7 @@ import UserManagementPage from "./pages/admin/UserManagementPage";
 import EventManagementPage from "./pages/admin/EventManagementPage";
 import CompetitionManagementPage from "./pages/admin/CompetitionManagementPage";
 import NotFound from "./pages/NotFound";
+import MyTeamsPage from "./pages/student/MyTeamsPage";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
             >
               <Route path="dashboard" element={<StudentDashboard />} />
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="teams" element={<MyTeamsPage />} />
             </Route>
             <Route 
               path="/judge/*" 

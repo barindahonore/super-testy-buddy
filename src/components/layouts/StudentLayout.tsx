@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { 
@@ -12,7 +11,8 @@ import {
   Award,
   Target,
   BarChart3,
-  User
+  User,
+  Users
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -39,6 +39,7 @@ function StudentSidebar() {
   const menuItems = [
     { title: "Dashboard", url: "/student/dashboard", icon: Home },
     { title: "My Events", url: "/student/events", icon: Calendar },
+    { title: "My Teams", url: "/student/teams", icon: Users },
     { title: "Submissions", url: "/student/submissions", icon: FileText },
     { title: "Achievements", url: "/student/achievements", icon: Award },
     { title: "Progress", url: "/student/progress", icon: BarChart3 },
