@@ -38,7 +38,8 @@ function StudentSidebar() {
   
   const menuItems = [
     { title: "Dashboard", url: "/student/dashboard", icon: Home },
-    { title: "My Events", url: "/student/events", icon: Calendar },
+    { title: "Browse Events", url: "/events", icon: Calendar },
+    { title: "My Events", url: "/student/events", icon: Trophy },
     { title: "My Teams", url: "/student/teams", icon: Users },
     { title: "Submissions", url: "/student/submissions", icon: FileText },
     { title: "Achievements", url: "/student/achievements", icon: Award },
@@ -80,7 +81,7 @@ function StudentSidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink 
                       to={item.url} 
-                      end={item.url === "/student/dashboard"}
+                      end={item.url === "/student/dashboard" || item.url === "/events"}
                       className={({ isActive }) => 
                         `flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                           isActive 
