@@ -23,6 +23,7 @@ import EventManagementPage from "./pages/admin/EventManagementPage";
 import CompetitionManagementPage from "./pages/admin/CompetitionManagementPage";
 import NotFound from "./pages/NotFound";
 import MyTeamsPage from "./pages/student/MyTeamsPage";
+import EventsListPage from "./pages/events/EventsListPage";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/events" element={<EventsListPage />} />
             <Route 
               path="/student/*" 
               element={
