@@ -23,6 +23,7 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { getMyTeams, leaveTeam, removeTeamMember, MyTeam } from '@/services/teamApi';
+import { SubmissionModal } from '@/components/submissions/SubmissionModal';
 import {
   Table,
   TableBody,
@@ -50,6 +51,10 @@ const MyTeamsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isRemoving, setIsRemoving] = useState<string | null>(null);
   const [isLeaving, setIsLeaving] = useState<string | null>(null);
+  const [submissionModal, setSubmissionModal] = useState<{ isOpen: boolean; teamId: string }>({
+    isOpen: false,
+    teamId: '',
+  });
 
   const fetchMyTeams = async () => {
     try {
@@ -397,7 +402,13 @@ const MyTeamsPage: React.FC = () => {
                               <FileText className="w-4 h-4" />
                             </Button>
                           ) : (
-                            <Button variant="ghost" size="sm" title="Make submission" className="text-primary">
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              title="Make submission" 
+                              className="text-primary"
+                              onClick={() => setSubmissionModal({ isOpen: true, teamId: team.id })}
+                            >
                               <Upload className="w-4 h-4" />
                             </Button>
                           )}
@@ -484,6 +495,16 @@ const MyTeamsPage: React.FC = () => {
           )}
         </CardContent>
       </Card>
+
+      {/* Submission Modal */}
+      <SubmissionModal
+        teamId={submissionModal.teamId}
+        isOpen={submissionModal.isOpen}
+        onClose={() => setSubmissionModal({ isOpen: false, teamId: '' })}
+        onSuccess={() => {
+          fetchMyTeams(); // Refresh the teams data
+        }}
+      />
     </div>
   );
 };

@@ -50,3 +50,30 @@ export const removeTeamMember = async (teamId: string, memberId: string) => {
   const response = await api.delete(`/teams/${teamId}/members/${memberId}`);
   return response.data;
 };
+
+// Submission interfaces
+export interface SubmissionContent {
+  url: string;
+  description: string;
+}
+
+export interface Submission {
+  id: string;
+  submittedAt: string;
+  content: SubmissionContent;
+  teamId: string;
+}
+
+export interface SubmissionResponse {
+  success: boolean;
+  message: string;
+  data: Submission;
+}
+
+// Create a submission
+export const createSubmission = async (teamId: string, content: SubmissionContent) => {
+  const response = await api.post<SubmissionResponse>(`/teams/${teamId}/submission`, {
+    content,
+  });
+  return response.data.data;
+};
