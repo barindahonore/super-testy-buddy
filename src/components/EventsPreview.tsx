@@ -46,11 +46,21 @@ const EventsPreview = () => {
     return colors[status as keyof typeof colors] || "bg-muted text-muted-foreground";
   };
 
-  const getStatusLabel = (status: string) => {
+  const getStatusLabel = (status: string, startTime: string, endTime: string) => {
+    const now = new Date();
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    
+    if (status === 'PUBLISHED') {
+      if (now < start) return 'Upcoming';
+      if (now >= start && now <= end) return 'Live';
+      if (now > end) return 'Ended';
+    }
+    
     switch (status) {
-      case 'PUBLISHED': return 'Upcoming';
       case 'IN_PROGRESS': return 'Live';
       case 'COMPLETED': return 'Completed';
+      case 'CANCELLED': return 'Cancelled';
       default: return status;
     }
   };
@@ -134,13 +144,7 @@ const EventsPreview = () => {
                 key={event.id} 
                 className="overflow-hidden hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 bg-gradient-card border-0 animate-fade-in cursor-pointer" 
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => {
-                  if (event.competition) {
-                    navigate(`/competitions/${event.competition.id}`);
-                  } else {
-                    navigate(`/events/${event.id}`);
-                  }
-                }}
+                onClick={() => navigate(`/events/${event.id}`)}
               >
                 {/* Card Header */}
                 <div className="p-6 pb-4">
@@ -149,7 +153,7 @@ const EventsPreview = () => {
                       {event.competition ? 'Competition' : 'Event'}
                     </Badge>
                     <Badge className={getStatusColor(event.status)}>
-                      {getStatusLabel(event.status)}
+                      {getStatusLabel(event.status, event.startTime, event.endTime)}
                     </Badge>
                   </div>
                   
