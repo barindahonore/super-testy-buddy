@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllEvents, Event } from "@/services/api";
@@ -81,11 +80,7 @@ const EventsListPage = () => {
   }, [currentPage]);
 
   const handleEventClick = (event: Event) => {
-    if (event.competition) {
-      navigate(`/competitions/${event.competition.id}`);
-    } else {
-      navigate(`/events/${event.id}`);
-    }
+    navigate(`/events/${event.id}`);
   };
 
   const handlePageChange = (page: number) => {

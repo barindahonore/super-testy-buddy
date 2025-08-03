@@ -54,15 +54,15 @@ export const EventActions: React.FC<EventActionsProps> = ({
 
   if (!user) {
     return (
-      <Card className="bg-accent/5 border-accent/20">
-        <CardContent className="p-6">
+      <Card className="bg-accent/5 border-accent/20 shadow-card">
+        <CardContent className="p-8">
           <div className="text-center">
-            <LogIn className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Join This Event</h3>
-            <p className="text-muted-foreground mb-4">
+            <LogIn className="w-16 h-16 text-primary mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold mb-3">Join This Event</h3>
+            <p className="text-muted-foreground mb-6 text-lg">
               You need to be logged in to register for events.
             </p>
-            <Button onClick={() => navigate('/login')} className="w-full sm:w-auto">
+            <Button onClick={() => navigate('/login')} size="lg" className="w-full sm:w-auto">
               <LogIn className="w-4 h-4 mr-2" />
               Login to Register
             </Button>
@@ -74,15 +74,15 @@ export const EventActions: React.FC<EventActionsProps> = ({
 
   if (registrationStatus) {
     return (
-      <Card className="bg-green-50 border-green-200">
-        <CardContent className="p-6">
-          <div className="flex items-center gap-4">
-            <CheckCircle className="w-8 h-8 text-green-600" />
+      <Card className="bg-green-50 border-green-200 shadow-card">
+        <CardContent className="p-8">
+          <div className="flex items-center gap-6">
+            <CheckCircle className="w-12 h-12 text-green-600 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-green-900">
+              <h3 className="text-2xl font-semibold text-green-900 mb-2">
                 You're Registered!
               </h3>
-              <p className="text-green-700">
+              <p className="text-green-700 text-lg">
                 Registered on {new Date(registrationStatus.registeredAt).toLocaleDateString()}
               </p>
             </div>
@@ -94,10 +94,10 @@ export const EventActions: React.FC<EventActionsProps> = ({
 
   if (event.status === 'CANCELLED') {
     return (
-      <Card className="bg-destructive/5 border-destructive/20">
-        <CardContent className="p-6">
+      <Card className="bg-destructive/5 border-destructive/20 shadow-card">
+        <CardContent className="p-8">
           <div className="text-center">
-            <p className="text-destructive font-medium">This event has been cancelled.</p>
+            <p className="text-destructive font-medium text-lg">This event has been cancelled.</p>
           </div>
         </CardContent>
       </Card>
@@ -105,19 +105,19 @@ export const EventActions: React.FC<EventActionsProps> = ({
   }
 
   return (
-    <Card className="bg-primary/5 border-primary/20">
-      <CardContent className="p-6">
+    <Card className="bg-primary/5 border-primary/20 shadow-card">
+      <CardContent className="p-8">
         <div className="text-center">
-          <UserPlus className="w-12 h-12 text-primary mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Register for This Event</h3>
-          <p className="text-muted-foreground mb-4">
+          <UserPlus className="w-16 h-16 text-primary mx-auto mb-4" />
+          <h3 className="text-2xl font-semibold mb-3">Register for This Event</h3>
+          <p className="text-muted-foreground mb-6 text-lg">
             Join this exciting event and be part of the experience.
           </p>
           <Button
             onClick={handleRegister}
             disabled={isRegistering}
-            className="w-full sm:w-auto"
             size="lg"
+            className="w-full sm:w-auto px-8"
           >
             {isRegistering ? 'Registering...' : 'Register Now'}
           </Button>

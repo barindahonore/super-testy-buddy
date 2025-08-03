@@ -68,11 +68,13 @@ const EventDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <Skeleton className="h-64 w-full" />
-          <Skeleton className="h-32 w-full" />
-          <Skeleton className="h-48 w-full" />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <Skeleton className="h-64 w-full rounded-xl" />
+            <Skeleton className="h-32 w-full rounded-xl" />
+            <Skeleton className="h-48 w-full rounded-xl" />
+          </div>
         </div>
       </div>
     );
@@ -80,20 +82,22 @@ const EventDetailPage = () => {
 
   if (error || !event) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <Alert variant="destructive">
-            <AlertDescription>
-              {error || 'Event not found'}
-            </AlertDescription>
-          </Alert>
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto">
+            <Alert variant="destructive" className="border-destructive/20 bg-destructive/5">
+              <AlertDescription className="text-destructive">
+                {error || 'Event not found'}
+              </AlertDescription>
+            </Alert>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
           <EventHeader event={event} />

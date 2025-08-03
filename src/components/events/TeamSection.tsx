@@ -16,42 +16,42 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ teamStatus, isTeamBase
   }
 
   return (
-    <Card>
+    <Card className="shadow-card border-border/50">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Users className="w-5 h-5 text-primary" />
+        <CardTitle className="flex items-center gap-2 text-xl">
+          <Users className="w-6 h-6 text-primary" />
           Team Status
         </CardTitle>
       </CardHeader>
       <CardContent>
         {teamStatus ? (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="font-semibold text-lg">{teamStatus.name}</h4>
+                <h4 className="font-semibold text-xl mb-2">{teamStatus.name}</h4>
                 <p className="text-sm text-muted-foreground">
-                  Invitation Code: <code className="bg-accent px-2 py-1 rounded">{teamStatus.invitationCode}</code>
+                  Invitation Code: <code className="bg-accent px-2 py-1 rounded font-mono text-primary">{teamStatus.invitationCode}</code>
                 </p>
               </div>
               {teamStatus.submission && (
-                <Badge variant="outline" className="bg-green-50 text-green-700">
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                   Submitted
                 </Badge>
               )}
             </div>
 
-            <div className="space-y-2">
-              <h5 className="font-medium">Team Members ({teamStatus.members.length})</h5>
+            <div className="space-y-3">
+              <h5 className="font-medium text-lg">Team Members ({teamStatus.members.length})</h5>
               <div className="space-y-2">
                 {teamStatus.members.map((member) => (
                   <div
                     key={member.user.id}
-                    className="flex items-center justify-between p-2 bg-accent/5 rounded"
+                    className="flex items-center justify-between p-3 bg-accent/5 rounded-lg border border-accent/20"
                   >
-                    <span className="text-sm">
+                    <span className="font-medium">
                       {member.user.firstName} {member.user.lastName}
                     </span>
-                    <Badge variant={member.role === 'LEADER' ? 'default' : 'secondary'} className="text-xs">
+                    <Badge variant={member.role === 'LEADER' ? 'default' : 'secondary'}>
                       {member.role}
                     </Badge>
                   </div>
@@ -60,18 +60,18 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ teamStatus, isTeamBase
             </div>
           </div>
         ) : (
-          <div className="text-center py-8">
-            <Users className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h4 className="text-lg font-semibold mb-2">No Team Yet</h4>
-            <p className="text-muted-foreground mb-6">
+          <div className="text-center py-12">
+            <Users className="w-20 h-20 text-muted-foreground mx-auto mb-6" />
+            <h4 className="text-2xl font-semibold mb-3">No Team Yet</h4>
+            <p className="text-muted-foreground mb-8 text-lg max-w-md mx-auto">
               This is a team-based competition. You need to create or join a team to participate.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button variant="outline" className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="outline" size="lg" className="flex items-center gap-2">
                 <Plus className="w-4 h-4" />
                 Create Team
               </Button>
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" size="lg" className="flex items-center gap-2">
                 <UserPlus className="w-4 h-4" />
                 Join Team
               </Button>

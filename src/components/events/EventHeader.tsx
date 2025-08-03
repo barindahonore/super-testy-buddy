@@ -32,7 +32,7 @@ const getStatusLabel = (status: string) => {
 
 export const EventHeader: React.FC<EventHeaderProps> = ({ event }) => {
   return (
-    <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-8 mb-8">
+    <div className="bg-gradient-to-r from-card/80 to-background backdrop-blur-sm rounded-xl p-8 border border-border/50 shadow-card">
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-4">
@@ -40,7 +40,7 @@ export const EventHeader: React.FC<EventHeaderProps> = ({ event }) => {
               {getStatusLabel(event.status)}
             </Badge>
             {event.competition && (
-              <Badge variant="outline" className="text-sm">
+              <Badge variant="outline" className="text-sm bg-amber-50 text-amber-700 border-amber-200">
                 Competition
               </Badge>
             )}
@@ -56,26 +56,26 @@ export const EventHeader: React.FC<EventHeaderProps> = ({ event }) => {
             </p>
           )}
           
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4 text-primary" />
               <span>{format(new Date(event.startTime), 'PPP')}</span>
             </div>
             
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-4 h-4 text-primary" />
               <span>{format(new Date(event.startTime), 'p')}</span>
             </div>
             
             {event.location && (
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-4 h-4 text-primary" />
                 <span>{event.location}</span>
               </div>
             )}
             
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4" />
+              <User className="w-4 h-4 text-primary" />
               <span>
                 Organized by {event.organizer.firstName} {event.organizer.lastName}
               </span>
