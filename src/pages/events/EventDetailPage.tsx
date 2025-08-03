@@ -68,13 +68,12 @@ const EventDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-white to-blue-50/30 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
-        <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
-          <div className="max-w-5xl mx-auto space-y-8 sm:space-y-12">
-            <Skeleton className="h-64 w-full rounded-2xl sm:rounded-3xl" />
-            <Skeleton className="h-32 w-full rounded-2xl sm:rounded-3xl" />
-            <Skeleton className="h-48 w-full rounded-2xl sm:rounded-3xl" />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <Skeleton className="h-64 w-full rounded-xl" />
+            <Skeleton className="h-32 w-full rounded-xl" />
+            <Skeleton className="h-48 w-full rounded-xl" />
           </div>
         </div>
       </div>
@@ -83,12 +82,11 @@ const EventDetailPage = () => {
 
   if (error || !event) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-white to-blue-50/30 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
-        <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
-          <div className="max-w-5xl mx-auto">
-            <Alert variant="destructive" className="border-destructive/20 bg-destructive/5 rounded-2xl shadow-elegant">
-              <AlertDescription className="text-destructive text-lg">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto">
+            <Alert variant="destructive" className="border-destructive/20 bg-destructive/5">
+              <AlertDescription className="text-destructive">
                 {error || 'Event not found'}
               </AlertDescription>
             </Alert>
@@ -99,12 +97,9 @@ const EventDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-white to-blue-50/30 overflow-hidden">
-      {/* Modern grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
-      
-      <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
-        <div className="max-w-5xl mx-auto space-y-8 sm:space-y-12">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto space-y-8">
           <EventHeader event={event} />
           
           <EventActions

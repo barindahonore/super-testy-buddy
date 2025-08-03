@@ -32,79 +32,53 @@ const getStatusLabel = (status: string) => {
 
 export const EventHeader: React.FC<EventHeaderProps> = ({ event }) => {
   return (
-    <div className="relative animate-fade-in">
-      <div className="bg-card/95 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-border/20 shadow-2xl hover:shadow-elegant transition-all duration-300">
-        {/* Status and Competition Badges */}
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-          <Badge variant={getStatusVariant(event.status)} className="text-sm sm:text-base px-3 py-1.5 shadow-lg">
-            {getStatusLabel(event.status)}
-          </Badge>
-          {event.competition && (
-            <Badge className="text-sm sm:text-base px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-              🏆 Competition
+    <div className="bg-gradient-to-r from-card/80 to-background backdrop-blur-sm rounded-xl p-8 border border-border/50 shadow-card">
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-4">
+            <Badge variant={getStatusVariant(event.status)} className="text-sm">
+              {getStatusLabel(event.status)}
             </Badge>
-          )}
-        </div>
-        
-        {/* Event Title */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-[1.1] tracking-tight">
-          {event.title}
-        </h1>
-        
-        {/* Event Description */}
-        {event.description && (
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed max-w-4xl">
-            {event.description}
-          </p>
-        )}
-        
-        {/* Event Details Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          <div className="flex items-center gap-3 p-3 sm:p-4 bg-primary/5 rounded-xl sm:rounded-2xl border border-primary/10 hover:bg-primary/10 transition-colors duration-300">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg sm:rounded-xl flex items-center justify-center">
-              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-medium text-muted-foreground">Date</div>
-              <div className="text-sm sm:text-base font-semibold text-foreground">
-                {format(new Date(event.startTime), 'MMM dd, yyyy')}
-              </div>
-            </div>
+            {event.competition && (
+              <Badge variant="outline" className="text-sm bg-amber-50 text-amber-700 border-amber-200">
+                Competition
+              </Badge>
+            )}
           </div>
           
-          <div className="flex items-center gap-3 p-3 sm:p-4 bg-secondary/5 rounded-xl sm:rounded-2xl border border-secondary/10 hover:bg-secondary/10 transition-colors duration-300">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-secondary/10 rounded-lg sm:rounded-xl flex items-center justify-center">
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-medium text-muted-foreground">Time</div>
-              <div className="text-sm sm:text-base font-semibold text-foreground">
-                {format(new Date(event.startTime), 'h:mm a')}
-              </div>
-            </div>
-          </div>
+          <h1 className="text-4xl font-bold text-foreground mb-4 leading-tight">
+            {event.title}
+          </h1>
           
-          {event.location && (
-            <div className="flex items-center gap-3 p-3 sm:p-4 bg-accent/5 rounded-xl sm:rounded-2xl border border-accent/10 hover:bg-accent/10 transition-colors duration-300">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
-              </div>
-              <div>
-                <div className="text-xs sm:text-sm font-medium text-muted-foreground">Location</div>
-                <div className="text-sm sm:text-base font-semibold text-foreground">{event.location}</div>
-              </div>
-            </div>
+          {event.description && (
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              {event.description}
+            </p>
           )}
           
-          <div className="flex items-center gap-3 p-3 sm:p-4 bg-muted/50 rounded-xl sm:rounded-2xl border border-border/20 hover:bg-muted/70 transition-colors duration-300">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-muted rounded-lg sm:rounded-xl flex items-center justify-center">
-              <User className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground" />
+          <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-primary" />
+              <span>{format(new Date(event.startTime), 'PPP')}</span>
             </div>
-            <div>
-              <div className="text-xs sm:text-sm font-medium text-muted-foreground">Organizer</div>
-              <div className="text-sm sm:text-base font-semibold text-foreground">
-                {event.organizer.firstName} {event.organizer.lastName}
+            
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-primary" />
+              <span>{format(new Date(event.startTime), 'p')}</span>
+            </div>
+            
+            {event.location && (
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span>{event.location}</span>
               </div>
+            )}
+            
+            <div className="flex items-center gap-2">
+              <User className="w-4 h-4 text-primary" />
+              <span>
+                Organized by {event.organizer.firstName} {event.organizer.lastName}
+              </span>
             </div>
           </div>
         </div>
