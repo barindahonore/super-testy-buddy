@@ -294,6 +294,9 @@ export interface SubmissionDetail {
   team: {
     name: string;
   };
+  submittedAt: string;
+  status: 'PENDING' | 'REVIEWED' | 'SCORED';
+  finalScore?: number;
 }
 
 export interface EvaluationData {
@@ -314,6 +317,37 @@ export const submitEvaluation = async (submissionId: string, evaluationData: Eva
 export const getEventById = async (eventId: string): Promise<Event> => {
   const response = await api.get(`/events/${eventId}`);
   return response.data.data;
+};
+
+// Registration interfaces
+export interface EventRegistration {
+  id: string;
+  eventId: string;
+  userId: string;
+  registeredAt: string;
+}
+
+export interface EventRegistrationResponse {
+  success: boolean;
+  data: EventRegistration;
+}
+
+// Event registration endpoints
+export const registerForEvent = async (eventId: string) => {
+  const response = await api.post<EventRegistrationResponse>(`/events/${eventId}/register`);
+  return response.data.data;
+};
+
+export const getMyEventRegistration = async (eventId: string): Promise<EventRegistration | null> => {
+  try {
+    const response = await api.get<EventRegistrationResponse>(`/events/${eventId}/registration/me`);
+    return response.data.data;
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+      return null;
+    }
+    throw error;
+  }
 };
 
 export default api;
